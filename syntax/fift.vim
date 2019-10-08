@@ -257,6 +257,7 @@ syn match forthInteger '\<\x*\d\x*\>'  " *2* --- this order!
 syn match forthInteger '\<%[0-1]*[0-1]\+\>'
 syn match forthFloat '\<-\=\d*[.]\=\d\+[DdEe]\d\+\>'
 syn match forthFloat '\<-\=\d*[.]\=\d\+[DdEe][-+]\d\+\>'
+syn match fiftBinary 'b{[0-1.]*}'
 
 " XXX If you find this overkill you can remove it. this has to come after the
 " highlighting for numbers otherwise it has no effect.
@@ -274,6 +275,7 @@ syn region forthComment start='\\S\s' end='.*' contains=forthTodo,forthSpaceErro
 syn match forthComment '\.(\s[^)]*)' contains=forthTodo,forthSpaceError
 syn region forthComment start='\(^\|\s\)\zs(\s' skip='\\)' end=')' contains=forthTodo,forthSpaceError
 syn region forthComment start='/\*' end='\*/' contains=forthTodo,forthSpaceError
+syn region forthComment start='//' end='$' contains=forthTodo,forthSpaceError
 
 " Include files
 syn match forthInclude '^INCLUDE\s\+\k\+'
@@ -302,6 +304,7 @@ if version >= 508 || !exists("did_forth_syn_inits")
     HiLink forthOperators Operator
     HiLink forthMath Number
     HiLink forthInteger Number
+    HiLink fiftBinary Number
     HiLink forthFloat Float
     HiLink forthStack Special
     HiLink forthRstack Special
